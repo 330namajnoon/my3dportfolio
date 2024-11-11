@@ -21,23 +21,18 @@ const Home = () => {
       "light",
       new BABYLON.Vector3(0, 3, 1)
     );
-    appScene.loadMesh("room", `${config.SERVER_BASE_URL}/asset/futuristic_room.glb`).then((room) => {
-      room.getMeshes().forEach((mesh) => {
-        mesh.position = new BABYLON.Vector3(-2, 0, 0);
+    appScene
+      .loadMesh("sina", `${config.SERVER_BASE_URL}/asset/avatar.glb`)
+      .then((res) => {
+        res.rotate(BABYLON.Axis.Y, -15, BABYLON.Space.WORLD);
+        res
+          .getAnimationGroups()
+          .forEach((animationGroup) => animationGroup.stop());
+        res
+          .getAnimationGroups()
+          .find((animationGroup) => animationGroup.name === "llamame")
+          ?.start(true);
       });
-      appScene
-        .loadMesh("sina", `${config.SERVER_BASE_URL}/asset/avatar.glb`)
-        .then((res) => {
-          res.rotate(BABYLON.Axis.Y, -15, BABYLON.Space.WORLD);
-          res
-            .getAnimationGroups()
-            .forEach((animationGroup) => animationGroup.stop());
-          res
-            .getAnimationGroups()
-            .find((animationGroup) => animationGroup.name === "parado")
-            ?.start(true);
-        });
-    })
   }, []);
 
   return (
