@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
 import { useEffect, useRef } from "react";
 import useAppScene from "../../hooks/useAppScene";
 import * as Styles from "./styles";
@@ -9,15 +7,12 @@ import { CameraScript } from "../../scripts";
 
 const Home = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const currentStep: number = useSelector(
-    (state: RootState) => state.home.currentStep
-  );
   const appScene = useAppScene();
 
   useEffect(() => {
     appScene.start(canvasRef.current!);
     appScene.addScript(appScene.getCamera(), CameraScript);
-    const entity = appScene.createHemisphericLight(
+    appScene.createHemisphericLight(
       "light",
       new BABYLON.Vector3(0, 3, 1)
     );
