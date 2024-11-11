@@ -24,7 +24,7 @@ const Home = () => {
     appScene
       .loadMesh("sina", `${config.SERVER_BASE_URL}/asset/avatar.glb`)
       .then((res) => {
-        res.rotate(BABYLON.Axis.Y, -15, BABYLON.Space.WORLD);
+        res.rotate(BABYLON.Axis.Y, 4, BABYLON.Space.WORLD);
         res
           .getAnimationGroups()
           .forEach((animationGroup) => animationGroup.stop());
